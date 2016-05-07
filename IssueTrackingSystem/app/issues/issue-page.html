@@ -1,0 +1,69 @@
+<div ng-controller="IssueCtrl as vm">
+    <h3 class="clean-header-green">Issue</h3>
+    <div class="issue-page col-md-5 col-md-offset-1">
+        <div>
+            <h3 class="formatted-header">Title</h3>
+            <p ng-bind="vm.currentIssue.Title"></p>
+        </div>
+        <div>
+            <h3 class="formatted-header description">Description</h3>
+            <p class="description" ng-bind="vm.currentIssue.Description"></p>
+        </div>
+        <div>
+            <h3 class="formatted-header">Assignee</h3>
+            <p ng-bind="vm.currentIssue.Assignee.Username"></p>
+        </div>
+        <div>
+            <h3 class="formatted-header">Author</h3>
+            <p ng-bind="vm.currentIssue.Author.Username"></p>
+        </div>
+        <div>
+            <h3 class="formatted-header">Current Status</h3>
+            <p ng-bind="vm.currentIssue.Status.Name"></p>
+        </div>
+        <div ng-if="vm.currentIssue.Status.Name !== 'Closed'">
+            <h3 class="formatted-header">Change Status</h3>
+            <div ng-if="vm.isIssueAssignee(vm.currentIssue)" id="change-status-ul">
+                    <button ng-repeat="status in vm.currentIssue.AvailableStatuses" class="btn btn-primary change-status-btn" ng-click="vm.changeStatus(status.Id)" ng-bind="status.Name"></button>
+            </div>
+        </div>
+        <div ng-if="vm.isProjectLeader(vm.issueProject)">
+            <button class="btn btn-success" ng-click="vm.showEditIssue()">Edit Issue</button>
+        </div>
+    </div>
+    <div class="comments col-md-6">
+        <h3 class="clean-header-green inner-header">Comments</h3>
+        <div class="comment-holder" ng-repeat="comment in vm.issueComments">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="thumbnail">
+                        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                    </div><!-- /thumbnail -->
+                </div><!-- /col-sm-1 -->
+
+                <div class="col-md-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong ng-bind="comment.Author.Username"></strong> <span class="text-muted">commented 5 days ago</span>
+                        </div>
+                        <div class="panel-body" ng-bind="comment.Text"></div><!-- /panel-body -->
+                    </div><!-- /panel panel-default -->
+                </div><!-- /col-sm-5 -->
+            </div><!-- /container -->
+        </div>
+        <div class="add-comment" ng-if="vm.isProjectLeader(vm.issueProject) || vm.isIssueAssignee(vm.currentIssue)">
+            <div>
+                <div class="col-md-10 col-md-offset-2">
+                    <div class="widget-area no-padding blank">
+                        <div class="status-upload">
+                            <form>
+                                <textarea ng-model="vm.newComment.text" placeholder="Say something about this issue." ></textarea>
+                                <button type="submit" ng-click="vm.addComment(vm.newComment)" class="btn btn-success green"><i class="fa fa-share"></i>Add Comment</button>
+                            </form>
+                        </div><!-- Status Upload  -->
+                    </div><!-- Widget Area -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

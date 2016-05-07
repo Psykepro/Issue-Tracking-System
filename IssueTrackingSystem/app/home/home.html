@@ -1,0 +1,115 @@
+<div ng-if="!isAuthenticated()" id="login-reg-home" ng-controller="HomeCtrl as vm">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <h3 id="login-header" class="clean-header-green inner-header">Login</h3>
+            <form name="loginUserForm">
+                <md-input-container class="input-containers">
+                    <label for="email">Email</label>
+                    <input type="email" required="required" class="form-control" id="email" ng-model="vm.loginUser.email">
+                </md-input-container>
+                <md-input-container class="input-containers">
+                    <label for="password">Password</label>
+                    <input type="password" required="required" pattern=".{6,100}" class="form-control" id="password" ng-model="vm.loginUser.password">
+                </md-input-container>
+                <button class="btn btn-primary" ng-class="(loginUserForm.$valid) ? 'hvr-pulse' : ''" ng-disabled="loginUserForm.$invalid" ng-click="vm.login(vm.loginUser)">Login</button>
+            </form>
+        </div>
+
+        <div class="col-md-4 col-md-offset-2">
+            <h3 id="register-header" class="clean-header-green inner-header">Register</h3>
+            <form name="registerUserForm">
+                <md-input-container class="input-containers">
+                    <label for="reg-email">Email</label>
+                    <input type="email" required="required" class="form-control" id="reg-email" ng-model="vm.registerUser.email" ng-model-options="{ updateOn: 'blur' }">
+                </md-input-container>
+                <md-input-container class="input-containers">
+                    <label for="reg-password">Password</label>
+                    <input type="password" required="required"
+                           pattern=".{6,100}" class="form-control"
+                           id="reg-password" ng-model="vm.registerUser.password">
+                    <div class="error-message"
+                         ng-if="vm.registerUser.password.$invalid && !vm.registerUser.password.$pristine">
+                        Password length must be between 6 and 100 characters
+                    </div>
+                </md-input-container>
+                <md-input-container class="input-containers">
+                    <label for="reg-confirmPassword">Confirm Password</label>
+                    <input type="password" required="required"
+                           class="form-control" id="reg-confirmPassword"
+                           ng-model="vm.registerUser.confirmPassword">
+                    <div class="error-message"
+                         ng-if="vm.registerUser.password !== vm.registerUser.confirmPassword">
+                        Passwords don't match
+                    </div>
+                </md-input-container>
+                <button class="btn btn-primary" ng-class="(registerUserForm.$valid) ? 'hvr-pulse' : ''" ng-disabled="registerUserForm.$invalid || vm.registerUser.password != vm.registerUser.confirmPassword" ng-click="vm.register(vm.registerUser)">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-if="isAuthenticated()" id="dashboard-home" ng-controller="DashboardCtrl as vm">
+    <h3 class="clean-header-green">Dashboard</h3>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1" id="my-projects-container">
+            <h3 class="clean-header-green inner-header">My Projects</h3>
+            <a class="hvr-bounce-in custom-buttons btn btn-success nav-buttons"
+               role="button" ng-bind="project.Name"
+               ng-repeat="project in vm.myProjects
+               | startFrom: vm.projectsPagination.page * vm.projectsPagination.perPage
+               | limitTo: vm.projectsPagination.perPage" href="#/projects/{{project.Id}}"></a>
+            <ul ng-if="vm.projectsPagination.numPages > 1" class="pagination">
+                <li><a href="" ng-click="vm.projectsPagination.prevPage()">&laquo;</a></li>
+                <li ng-repeat="n in [] | range: vm.projectsPagination.numPages" ng-class="{active: n == vm.projectsPagination.page}">
+                    <a href="" ng-click="vm.projectsPagination.toPageId(n)">{{n + 1}}</a>
+                </li>
+                <li><a href="" ng-click="vm.projectsPagination.nextPage()">&raquo;</a></li>
+            </ul>
+        </div>
+        <div class="col-md-5 col-md-offset-1" id="assigned-projects-container">
+            <h3 class="clean-header-green inner-header">Assigned Projects</h3>
+            <a class="hvr-bounce-in custom-buttons btn btn-success nav-buttons"
+               role="button" ng-bind="project.Name"
+               ng-repeat="project in vm.assignedProjects
+               | startFrom: vm.assignedProjectsPagination.page * vm.assignedProjectsPagination.perPage
+               | limitTo: vm.assignedProjectsPagination.perPage" href="#/projects/{{project.Id}}"></a>
+            <ul ng-if="vm.assignedProjectsPagination.numPages > 1" class="pagination">
+                <li><a href="" ng-click="vm.assignedProjectsPagination.prevPage()">&laquo;</a></li>
+                <li ng-repeat="n in [] | range: vm.assignedProjectsPagination.numPages" ng-class="{active: n == vm.assignedProjectsPagination.page}">
+                    <a href="" ng-click="vm.assignedProjectsPagination.toPageId(n)">{{n + 1}}</a>
+                </li>
+                <li><a href="" ng-click="vm.assignedProjectsPagination.nextPage()">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1" id="issues-table-container">
+            <h3 class="clean-header-green inner-header">My Issues</h3>
+            <table id="issues-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Project</th>
+                    <th>DueDate</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="issue in vm.myIssues | startFrom: vm.issuesPagination.page * vm.issuesPagination.perPage | limitTo: vm.issuesPagination.perPage">
+                    <td><a href="#/issues/{{issue.Id}}" ng-bind="issue.Title"></a></td>
+                    <td ng-bind="issue.Description"></td>
+                    <td><a href="#/projects/{{issue.Project.Id}}" ng-bind="issue.Project.Name"></a></td>
+                    <td ng-bind="issue.DueDate | date"></td>
+                </tr>
+                </tbody>
+            </table>
+            <ul ng-if="vm.issuesPagination.numPages > 1" class="pagination">
+                <li><a href="" ng-click="vm.issuesPagination.prevPage()">&laquo;</a></li>
+                <li ng-repeat="n in [] | range: vm.issuesPagination.numPages" ng-class="{active: n == vm.issuesPagination.page}">
+                    <a href="" ng-click="vm.issuesPagination.toPageId(n)">{{n + 1}}</a>
+                </li>
+                <li><a href="" ng-click="vm.issuesPagination.nextPage()">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

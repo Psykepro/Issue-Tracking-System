@@ -1,0 +1,43 @@
+<div ng-controller="EditProjectCtrl as vm" class="modal fade">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Edit Project</h4>
+        </div>
+        <div ng-cloak class="modal-body">
+                <form class="project-form" name="editProjectForm">
+                    <md-input-container class="input-containers">
+                        <label for="name">Name</label>
+                        <input type="text" required="required"  id="name" ng-model="vm.editProject.Name">
+                    </md-input-container>
+                    <md-input-container class="input-containers">
+                        <label for="description">Description</label>
+                        <input type="text" required="required"  id="description" ng-model="vm.editProject.Description">
+                    </md-input-container>
+                    <div ng-if="vm.isAdmin()" class="modal-select-container" >
+                        <label class="modal-select-label" for="leadId">LeadId</label>
+                        <select class="modal-select" id="leadId"
+                                ng-model="vm.editProject.LeadId"
+                                load-users selected-id="{{vm.editProject.Lead.Id}}"></select>
+                    </div>
+                    <md-input-container class="input-containers">
+                        <label for="project-key">ProjectKey</label>
+                        <input type="text" readonly="readonly" id="project-key" ng-model="vm.editProject.ProjectKey">
+                    </md-input-container>
+                    <md-input-container class="input-containers">
+                        <label for="priorities">Priorities (separated by single space and comma)</label>
+                        <input type="text" required="required" id="priorities" ng-model="vm.editProject.Priorities">
+                    </md-input-container>
+                    <md-input-container class="input-containers">
+                        <label for="labels">Labels (separated by single space and comma)</label>
+                        <input type="text" required="required" id="labels" ng-model="vm.editProject.Labels">
+                    </md-input-container>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button ng-disabled="editProjectForm.$invalid" ng-class="(editProjectForm.$valid) ? 'hvr-pulse' : ''" ng-click="vm.updateProject(vm.editProject)" class="btn btn-success" data-dismiss="modal">Edit project</button>
+            </div>
+        </div>
+    </div>
+</div>

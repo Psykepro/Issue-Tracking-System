@@ -1,0 +1,29 @@
+<h3 class="clean-header-green">All Users</h3>
+<div class="vrepeatContainer users-container" ng-cloak>
+    <md-content layout="column" class="md-content-users">
+        <h3 class="clean-header-green inner-header">Normal Users</h3>
+        <md-virtual-repeat-container id="vertical-container-users">
+            <div md-virtual-repeat="user in vm.users | filter: { isAdmin : false}"
+                 class="repeated-item-vertical" flex>
+                <div class="users-row">
+                    <span class="users-username" ng-bind="user.Username"></span>
+                    <div class="make-admin-btn-wrapper">
+                        <button ng-if="currentUser.isAdmin && !user.isAdmin"
+                                ng-click="vm.promoteToAdmin($event, user.Id)"
+                                class="btn btn-success hvr-pulse make-admin-btn">Make Admin</button>
+                    </div>
+                </div>
+            </div>
+        </md-virtual-repeat-container>
+    </md-content>
+    <md-content layout="column" class="md-content-users">
+        <h3 class="clean-header-green inner-header">Admins</h3>
+        <md-virtual-repeat-container id="vertical-container-admins">
+            <div md-virtual-repeat="user in vm.users | filter: { isAdmin : true}"
+                 class="repeated-item-vertical" flex>
+                <span class="users-username" ng-bind="user.Username"></span>
+            </div>
+        </md-virtual-repeat-container>
+    </md-content>
+</div>
+

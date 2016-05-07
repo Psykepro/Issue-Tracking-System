@@ -1,0 +1,47 @@
+<div class="modal fade" ng-controller="AddIssueCtrl as vm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add issue</h4>
+            </div>
+            <div class="modal-body">
+                <form class="add-issue-form" name="addIssueForm">
+                    <md-input-container class="input-containers">
+                        <label for="title">Title</label>
+                        <input ng-model="vm.issue.Title" required="required" id="title"/>
+                    </md-input-container>
+                    <md-input-container class="input-containers">
+                        <label for="description">Description</label>
+                        <input ng-model="vm.issue.Description" required="required" id="description"/>
+                    </md-input-container>
+                    <div class="modal-select-container">
+                        <label for="assignee" class="modal-select-label">Assignee</label>
+                        <select class="modal-select"
+                                ng-model="vm.issue.Assignee.Id"
+                                required="required"
+                                id="assignee" load-users></select>
+                    </div>
+                    <md-input-container class="input-containers">
+                        <label for="due-date">DueDate</label>
+                        <input type="date" required="required" ng-model="vm.issue.DueDate" id="due-date" />
+                    </md-input-container>
+                    <div class="modal-select-container">
+                        <label for="priority" class="modal-select-label">Priority</label>
+                        <select class="modal-select"
+                                required="required"
+                                ng-model="vm.issue.Priority.Id"
+                                id="priority" load-priorities priorities="{{vm.priorities}}"></select>
+                    </div>
+                    <md-input-container class="input-containers">
+                        <label for="labels">Labels</label>
+                        <input ng-model="vm.issue.Labels" required="required" id="labels"/>
+                    </md-input-container>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="addIssueForm.$invalid" ng-click="vm.addIssueRequest(vm.issue)" class="btn btn-success" data-dismiss="modal">Add issue</button>
+            </div>
+        </div>
+    </div>
+</div>

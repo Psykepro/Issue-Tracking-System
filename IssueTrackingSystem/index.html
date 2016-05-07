@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="issueTrackingSystem">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Issue Tracking System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="app/bower_components/html5-boilerplate/dist/css/main.css">
+
+    <!--Angular Material Styles-->
+    <link rel="stylesheet" href="app/bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="app/styles/virtual-repeat.css">
+    <!--Angular Material Styles-->
+
+    <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/styles/app.css">
+    <link rel="stylesheet" href="app/styles/header-style.css">
+    <link rel="stylesheet" href="app/styles/hover-min.css">
+    <script src="app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+    <body ng-cloak ng-controller="MainCtrl" cz-shortcut-listen="true" >
+        <div id="welcome-header-wrapper" ng-if="!isAuthenticated()">
+            <h3 id="welcome-header">Issue Tracking System</h3>
+        </div>
+        <div id="nav-header" ng-if="isAuthenticated()">
+            <a id="website-title" class="hvr-float-shadow" href="#/"><h3 id="system-name">Issue Tracking System</h3></a>
+            <ul id="user-panel">
+                <li><a href="#/">Dashboard</a></li>
+                <li><a href="#/projects">Projects</a></li>
+                <li><a href="#/profile/password">Change Password</a></li>
+                <li><a href="#/logout" ng-click="logout()">Logout</a></li>
+                <li ng-show="isAdmin()"><h4 id="admin-header">Admin options:</h4></li>
+                <li ng-show="isAdmin()"><a href="#/users">Users</a></li>
+                <li ng-show="isAdmin()"><a ng-click="showCreateProject()">Create Project</a></li>
+            </ul>
+        </div>
+
+        <div id="view-container">
+            <div ng-view />
+        </div>
+
+        <script src="app/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="app/bower_components/angular/angular.js"></script>
+
+        <!-- Angular Material Dependencies -->
+        <script src="app/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="app/bower_components/angular-aria/angular-aria.min.js"></script>
+        <script src="app/bower_components/angular-material/angular-material.min.js"></script>
+        <!-- Angular Material Dependencies -->
+
+        <script src="app/bower_components/angular-route/angular-route.js"></script>
+        <script src="app/bower_components/notify/notify.js"></script>
+        <script src="app/bower_components/ng-simplePagination/simplePagination.js"></script>
+        <script src="app/bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
+        <script src="app/utilities/fragmentGenerators.js"></script>
+        <script src="app/utilities/shallowCopy.js"></script>
+        <script src="app/app.js"></script>
+        <script ng-if="isAuthenticated()" src="app/common/header-script.js"></script>
+        <script src="app/main/main-controller.js"></script>
+        <script src="app/common/services/identity-service.js"></script>
+        <script src="app/issues/issues.js"></script>
+        <script src="app/issues/issue-service.js"></script>
+        <script src="app/issues/issue-controller.js"></script>
+        <script src="app/issues/add-issue-controller.js"></script>
+        <script src="app/issues/edit-issue-controller.js"></script>
+        <script src="app/common/common.js"></script>
+        <script src="app/common/filters/join-filter.js"></script>
+        <script src="app/common/services/label-service.js"></script>
+        <script src="app/common/services/authentication-service.js"></script>
+        <script src="app/common/directives/load-users-directive.js"></script>
+        <script src="app/common/directives/load-priorities-directive.js"></script>
+        <script src="app/user/user.js"></script>
+        <script src="app/user/user-service.js"></script>
+        <script src="app/user/admin-service.js"></script>
+        <script src="app/user/user-controller.js"></script>
+        <script src="app/home/home.js"></script>
+        <script src="app/home/home-controller.js"></script>
+        <script src="app/home/dashboard-controller.js"></script>
+        <script src="app/projects/projects.js"></script>
+        <script src="app/projects/all-projects-controller.js"></script>
+        <script src="app/projects/edit-project-controller.js"></script>
+        <script src="app/projects/add-project-controller.js"></script>
+        <script src="app/projects/project-controller.js"></script>
+        <script src="app/projects/project-service.js"></script>
+     </body>
+</html>

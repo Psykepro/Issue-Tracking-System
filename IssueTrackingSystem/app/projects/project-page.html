@@ -1,0 +1,65 @@
+<h3 class="clean-header-green">Project</h3>
+<div id="project-info">
+    <h3 class="formatted-header-project">Name:</h3>
+    <p class="formatted-paragraph-project" ng-bind="vm.currentProject.Name"></p>
+    <h3 class="formatted-header-project">Description:</h3>
+    <p class="formatted-paragraph-project" ng-bind="vm.currentProject.Description"></p>
+    <h3 class="formatted-header-project">Project's Leader:</h3>
+    <p class="formatted-paragraph-project" ng-bind="vm.currentProject.Lead.Username"></p>
+    <h3 class="formatted-header-project">Project Key:</h3>
+    <p class="formatted-paragraph-project" ng-bind="vm.currentProject.ProjectKey"></p>
+    <h3 class="formatted-header-project">Priorities:</h3>
+    <p class="formatted-paragraph-project" ng-bind="vm.currentProject.Priorities | join: ', '"></p>
+    <h3 class="formatted-header-project">Labels:</h3>
+    <p class="formatted-paragraph-project" ng-bind="vm.currentProject.Labels | join: ', '"></p>
+    <div ng-if="vm.currentProject.Lead.Id === currentUser.Id || currentUser.isAdmin === true">
+        <a class="btn btn-success hvr-pulse" ng-click="vm.showAddIssue()" role="button">Add Issue</a>
+        <a class="btn btn-success hvr-pulse" ng-click="vm.showEditProject()" role="button">Edit project</a>
+    </div>
+</div>
+<div id="issue-container" class="row">
+    <div class="col-md-10 col-md-offset-1" id="issues-table-container">
+        <h3 class="clean-header-green inner-header">{{vm.currentProject.Name}}'s Issues</h3>
+        <h4 id="filter"><strong>Filter issues by:</strong></h4>
+        <label for="priority-filter">Priority: </label>
+        <select id="priority-filter" ng-model="vm.priorityFilter">
+            <option value="">All</option>
+            <option ng-repeat="priority in vm.currentProject.Priorities" value="{{priority.Name}}">{{priority.Name}}</option>
+        </select>
+        <label for="status-filter">Status: </label>
+        <select id="status-filter" ng-model="vm.statusFilter">
+            <option value="">All</option>
+            <option value="Open">Open</option>
+            <option value="InProgress">InProgress</option>
+            <option value="StoppedProgress">StoppedProgress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+            <option value="Resolved">Resolved</option>
+        </select>
+        <label for="only-assigned-issues">Show only assigned issues:</label>
+        <select id="only-assigned-issues" ng-model="vm.onlyAssignedIssues">
+            <option selected="selected" value="{{currentUser.Id}}">Yes</option>
+            <option value="">No</option>
+        </select>
+        <table id="issues-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Project</th>
+                <th>DueDate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="issue in vm.projectIssues | filter: {Priority:{Name: vm.priorityFilter} , Status:{Name: vm.statusFilter}, Assignee:{Id: vm.onlyAssignedIssues}}">
+                <td><a href="#/issues/{{issue.Id}}" ng-bind="issue.Title"></a></td>
+                <td ng-bind="issue.Description"></td>
+                <td><a href="#/projects/{{issue.Project.Id}}" ng-bind="issue.Project.Name"></a></td>
+                <td ng-bind="issue.DueDate | date"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

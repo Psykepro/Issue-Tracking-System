@@ -1,0 +1,67 @@
+.vrepeatContainer #horizontal-container {
+    height: 100px;
+    width: 830px;
+}
+
+.vrepeatContainer #vertical-container {
+    height: 292px;
+    width: 400px;
+}
+
+.vrepeatContainer #vertical-container-users,
+.vrepeatContainer #vertical-container-projects
+{
+    height: 800px;
+    width: 100%;
+    position: relative;
+}
+
+.vrepeatContainer #vertical-container-admins {
+    height: 800px;
+    width: 100%;
+}
+
+.vrepeatContainer #vertical-container-users .repeated-item-vertical,
+.vrepeatContainer #vertical-container-projects .repeated-item-vertical{
+    width: 100%;
+}
+
+.md-content-users{
+    display: inline-block;
+    width: 45%;
+    margin-left: 3.1%;
+}
+.md-content-projects{
+    display: inline-block;
+    width: 100%;
+}
+.users-container,
+.projects-container {
+    width: 60%;
+    position: relative;
+    left: 20%;
+}
+
+.vrepeatContainer #vertical-container-admins .repeated-item-vertical #vertical-container-projects{
+    width: 100%;
+}
+
+.vrepeatContainer .repeated-item-horizontal {
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 84px;
+    padding-top: 35px;
+    text-align: center;
+    width: 50px;
+}
+
+.vrepeatContainer .repeated-item-vertical {
+    box-sizing: border-box;
+    height: 54px;
+    padding-top: 10px;
+}
+
+.vrepeatContainer md-virtual-repeat-container {
+    border: solid 1px grey;
+}
