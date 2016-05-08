@@ -1,4 +1,5 @@
-'use strict';
+(function(){
+ 'use strict';
 
 angular.module('issueTrackingSystem.common.services.labelService',[])
     .factory('labelService',[
@@ -23,4 +24,5 @@ angular.module('issueTrackingSystem.common.services.labelService',[])
         }
 
         return labelService;
-    }]);
+    }]);   
+}());

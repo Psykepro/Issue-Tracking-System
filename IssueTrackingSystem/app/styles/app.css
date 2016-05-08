@@ -24,16 +24,24 @@ body {
   position: relative;
   top: 5px;
 }
+
 #project-info{
   display: block;
+  width: 100%;
+  position: relative;
+  left: 30%;
   text-align: center;
+}
+
+#project-page-buttons{
+  width: 40%;
 }
 
 #issue-container{
   position: relative;
   width: 80%;
   text-align: center;
-  left: 15%;
+  left: 10%;
   margin-bottom: 5%;
 }
 
@@ -194,7 +202,6 @@ div.navbar-fixed-top{
   height: 90%;
   text-align: center;
   background-color: rgba(92, 184, 92, 0.5);
-  border-radius: 5px;
 }
 
 .description{
@@ -211,28 +218,27 @@ div.navbar-fixed-top{
   font-weight: bold;
   font-size: 12px;
 }
-.formatted-header{
+
+.formatted-header-issue {
   width: 100%;
   border: 3px solid #5cb85c;
   padding: 5px;
   border-radius: 10px;
   font-family: Furore;
 }
-.formatted-paragraph-project{
-  position: relative;
-  left: 25%;
-  width: 50%;
-  height: auto;
-}
-.formatted-header-project{
-  position: relative;
-  left: 25%;
-  width: 50%;
+
+.formatted-header-project {
+  width: 40%;
   border: 3px solid #5cb85c;
   padding: 5px;
   border-radius: 10px;
   font-family: Furore;
 }
+
+.formatted-paragraph-project{
+  width: 40%;
+}
+
 .modal-header {
   font-family: Audimat;
   color: #ffffff;

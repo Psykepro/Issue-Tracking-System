@@ -1,4 +1,5 @@
-'use strict';
+(function(){
+    'use strict';
 
 angular.module('issueTrackingSystem.common.services.identityService',[])
     .factory('identityService',[
@@ -45,3 +46,4 @@ angular.module('issueTrackingSystem.common.services.identityService',[])
             }
             return identity;
         }]);
+}());

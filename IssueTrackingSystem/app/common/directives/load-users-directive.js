@@ -1,4 +1,5 @@
-'use strict';
+(function(){
+    'use strict';
 
 angular
     .module('issueTrackingSystem.common.directives.loadUsersDirective', [])
@@ -36,3 +37,4 @@ angular
                 }
             };
         }]);
+}());

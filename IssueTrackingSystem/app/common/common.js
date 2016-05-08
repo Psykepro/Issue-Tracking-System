@@ -1,4 +1,5 @@
-angular.module('issueTrackingSystem.common', [
+(function (){
+    angular.module('issueTrackingSystem.common', [
     'issueTrackingSystem.common.filters.join',
     'issueTrackingSystem.common.services.labelService',
     'issueTrackingSystem.common.services.identityService',
@@ -6,3 +7,4 @@ angular.module('issueTrackingSystem.common', [
     'issueTrackingSystem.common.services.authenticationService',
     'issueTrackingSystem.common.directives.loadPrioritiesDirective'
 ]);
+}());

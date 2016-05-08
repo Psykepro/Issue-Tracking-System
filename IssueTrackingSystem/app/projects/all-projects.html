@@ -1,17 +1,13 @@
 <h3 class="clean-header-green">All Projects</h3>
-<!--<div class="row">-->
-    <!--<div class="col-md-6" id="all-projects-container" >-->
-        <div class="vrepeatContainer projects-container" ng-cloak>
-            <md-content layout="column" class="md-content-projects">
-                <md-virtual-repeat-container id="vertical-container-projects">
-                    <div md-virtual-repeat="project in vm.allProjects"
-                         class="repeated-item-vertical" flex>
-                        <a class="hvr-bounce-in custom-buttons btn btn-success nav-buttons"
-                           role="button" ng-bind="project.Name"
-                           href="#/projects/{{project.Id}}"></a>
-                    </div>
-                </md-virtual-repeat-container>
-            </md-content>
-        </div>
-    <!--</div>-->
-<!--</div>-->
+<div class="vrepeatContainer projects-container" ng-cloak>
+    <md-content layout="column" class="md-content-projects">
+        <md-virtual-repeat-container id="vertical-container-projects">
+            <div md-virtual-repeat="project in vm.allProjects"
+                 class="repeated-item-vertical" flex>
+                <a class="hvr-bounce-in custom-buttons btn btn-success nav-buttons"
+                   role="button" ng-bind="project.Name"
+                   href="#/projects/{{project.Id}}"></a>
+            </div>
+        </md-virtual-repeat-container>
+    </md-content>
+</div>

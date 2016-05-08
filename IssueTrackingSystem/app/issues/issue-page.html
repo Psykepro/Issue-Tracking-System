@@ -2,27 +2,27 @@
     <h3 class="clean-header-green">Issue</h3>
     <div class="issue-page col-md-5 col-md-offset-1">
         <div>
-            <h3 class="formatted-header">Title</h3>
+            <h3 class="formatted-header-issue">Title</h3>
             <p ng-bind="vm.currentIssue.Title"></p>
         </div>
         <div>
-            <h3 class="formatted-header description">Description</h3>
+            <h3 class="formatted-header-issue description">Description</h3>
             <p class="description" ng-bind="vm.currentIssue.Description"></p>
         </div>
         <div>
-            <h3 class="formatted-header">Assignee</h3>
+            <h3 class="formatted-header-issue">Assignee</h3>
             <p ng-bind="vm.currentIssue.Assignee.Username"></p>
         </div>
         <div>
-            <h3 class="formatted-header">Author</h3>
+            <h3 class="formatted-header-issue">Author</h3>
             <p ng-bind="vm.currentIssue.Author.Username"></p>
         </div>
         <div>
-            <h3 class="formatted-header">Current Status</h3>
+            <h3 class="formatted-header-issue">Current Status</h3>
             <p ng-bind="vm.currentIssue.Status.Name"></p>
         </div>
         <div ng-if="vm.currentIssue.Status.Name !== 'Closed'">
-            <h3 class="formatted-header">Change Status</h3>
+            <h3 class="formatted-header-issue">Change Status</h3>
             <div ng-if="vm.isIssueAssignee(vm.currentIssue)" id="change-status-ul">
                     <button ng-repeat="status in vm.currentIssue.AvailableStatuses" class="btn btn-primary change-status-btn" ng-click="vm.changeStatus(status.Id)" ng-bind="status.Name"></button>
             </div>

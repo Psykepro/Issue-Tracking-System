@@ -1,4 +1,5 @@
-'use strict';
+(function(){
+    'use strict';
 
 angular.module('issueTrackingSystem.common.services.authenticationService', [])
     .factory('authenticationService',[
@@ -58,5 +59,4 @@ angular.module('issueTrackingSystem.common.services.authenticationService', [])
 
             return authenticationService;
         }]);
-
-
+}());

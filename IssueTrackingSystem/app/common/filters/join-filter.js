@@ -1,4 +1,7 @@
-angular.module('issueTrackingSystem.common.filters.join', [])
+(function(){
+    'use strict';
+    
+    angular.module('issueTrackingSystem.common.filters.join', [])
     .filter('join', function() {
         return function (input, joinString) {
             var result,
@@ -13,3 +16,4 @@ angular.module('issueTrackingSystem.common.filters.join', [])
             return result;
         };
     });
+}());
