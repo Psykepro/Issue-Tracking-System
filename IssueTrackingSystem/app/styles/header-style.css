@@ -43,7 +43,7 @@
   position: relative;
   bottom: 22px;
   left: 4px;
-  width: 17%;
+  width: 21%;
   color: #000000;
   margin: 0;
   font-family: CaptureIt;
@@ -52,6 +52,10 @@
 
 #nav-header > #website-title > h3{
   margin: 0;
+}
+
+#system-name{
+  width: 100%;
 }
 
 #nav-header > ul > li {

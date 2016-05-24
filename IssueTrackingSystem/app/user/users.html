@@ -21,7 +21,7 @@
         <md-virtual-repeat-container id="vertical-container-admins">
             <div md-virtual-repeat="user in vm.users | filter: { isAdmin : true}"
                  class="repeated-item-vertical" flex>
-                <span class="users-username" ng-bind="user.Username"></span>
+                <span class="admins-username" ng-bind="user.Username"></span>
             </div>
         </md-virtual-repeat-container>
     </md-content>

@@ -58,8 +58,9 @@
 
 .vrepeatContainer .repeated-item-vertical {
     box-sizing: border-box;
-    height: 54px;
+    height: 40px;
     padding-top: 10px;
+    margin-bottom: 5px;
 }
 
 .vrepeatContainer md-virtual-repeat-container {

@@ -59,6 +59,7 @@
                         issueService
                             .initProjectIssues(currentId)
                             .then(function(success) {
+                                console.log(success);
                                 //////////////////////////////////
                                 // Set current project's issues //
                                 //////////////////////////////////

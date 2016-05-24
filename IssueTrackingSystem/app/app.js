@@ -47,5 +47,12 @@
                     controllerAs: 'vm'
                 });
         }])
-        .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/');
+        .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/')
+        .run(function ($rootScope, $location) {
+            $rootScope.$on("$routeChangeStart", function (event, next, current) {
+                if (!sessionStorage['userAuth'] && !sessionStorage['isAdmin']) {
+                    $location.path('/');
+                }
+            });
+        });
 }());
